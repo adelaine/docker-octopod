@@ -1,14 +1,16 @@
+# Define Docker Compose version.
 version: "3"
+
+# Define all the containers.
 services:
+  # Frontend Container.
   dev:
     container_name: dev
-    build: .
-    ports:
-      - "4200:4200"
-    environment:
-      SHELL: /bin/bash
-      NODE_ENV: development
+    build: ./
     volumes:
-      - ~/.gitconfig:/etc/gitconfig
-      - ./app:/usr/src/app
+      - ./octopod:/usr/src/app
+    ports:
+     - 4200:4200
+    environment:
+      NODE_ENV: development
     command: /usr/src/app/entrypoint.sh
